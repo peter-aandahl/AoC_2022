@@ -24,12 +24,12 @@ with open('input02.csv', mode='r') as file:
     for lines in inputFile:
         outcome = outcomes[lines[0][0]+lines[0][2]]
         mymove = moves[lines[0][2]]
-        score = score + outcome + mymove
+        score += outcome + mymove
 
         strategic_outcome = strategy[lines[0][0]+lines[0][2]]
         strategic_move = strategy[lines[0][0]+lines[0][2]][1]
         strategic_outcome_value = outcomes[strategic_outcome]
         strategic_move_value = moves[strategic_move]
-        strategy_score = strategy_score + strategic_outcome_value + strategic_move_value
+        strategy_score += strategic_outcome_value + strategic_move_value
 
     print(score,strategy_score)
