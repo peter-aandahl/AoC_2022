@@ -1,7 +1,6 @@
 import csv
 
 with open('input04.csv', mode='r') as file:
-
     inputFile = csv.reader(file)
 
     total_ovelapping = 0
@@ -25,6 +24,5 @@ with open('input04.csv', mode='r') as file:
         # Is the lowest line inside the top line?
         if (elf2_start >= elf1_start) and (elf2_stop <= elf1_stop):
             total_ovelapping += 1
-
 
     print(total_ovelapping)
