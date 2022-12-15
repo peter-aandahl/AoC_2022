@@ -62,8 +62,8 @@ with open('input08.csv', mode='r') as file:
 
     # Part 2
 
-    # Only interior trees will need checking since trees at the edge will always
-    # 0 trees in at least one direction resulting in a scenic score of 0.
+    # Only interior trees will need checking since trees at the edge will always have
+    # zero trees in at least one direction resulting in a scenic score of 0.
     # x,y are coordinates of trees to be checked
     max_scene = 1
 
