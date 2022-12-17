@@ -1,17 +1,37 @@
 import csv
+from collections import defaultdict
+from pathlib import Path
 
-with open('test07.csv', mode='r') as file:
+with open('input07.csv', mode='r') as file:
     inputFile = csv.reader(file)
 
+    current_dir = Path('/')
+    catalog_sizes = defaultdict(int)
+
     for lines in inputFile:
-        line = lines[0]
+        if lines[0].startswith('$ cd'):
+            current_dir = (current_dir / lines[0][5:]).resolve()
 
-        if (line[0]=='$'):
-            print('Command detected')
+        elif lines[0].startswith('$ ls'):
+            continue
 
-        if (line[0:3]=='dir'):
-            print('Directory found')
+        elif lines[0].startswith('dir'):
+            continue
 
-        if (line[0] in '0123456789'):
-            print('File detected')
+        else:
+            size = int(lines[0].split(' ')[0])
+            catalog_sizes[current_dir] += size
+
+            for parent in current_dir.parents:
+                catalog_sizes[parent] += size
+
+
+    free_space = catalog_sizes[Path('C:/')]
+    required = 30000000 - (70000000 - free_space)
+
+
+    print('Part 1')
+    print(sum(value for value in catalog_sizes.values() if value <= 100000))
+    print('Part 2')
+    print(min(value for value in catalog_sizes.values() if value >= required))
 
